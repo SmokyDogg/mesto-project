@@ -1,18 +1,22 @@
-.popup-edit__form-input {
+.popup__form-input {
   margin: 30px 0 0 0;
   padding: 0 0 13px 0;
   border: none;
   font-size: 14px;
   line-height: 1.21;
-  width: 100%;
   box-sizing: border-box;
   opacity: 1;
+  min-width: 358px;
+  min-height: 27px;
+  border-bottom: #545454 1px solid;
+  outline: none;
 }
-.popup-edit__form-input:focus {
+.popup__form-input:focus {
   outline: none;
 }
 @media screen and (max-width: 768px) {
-  .popup-edit__form-input {
+  .popup__form-input {
     margin-top: 51px;
+    min-width: 238px;
   }
 }
