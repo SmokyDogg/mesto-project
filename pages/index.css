@@ -18,14 +18,15 @@
 
 @import url(../blocks/popup/__opened/popup__opened.css);
 
-@import url(../blocks/popup-edit/popup-edit.css);
-@import url(../blocks/popup-edit/__body/popup-edit__body.css);
-@import url(../blocks/popup-edit/__close-button/popup-edit__close-button.css);
-@import url(../blocks/popup-edit/__content/popup-edit__content.css);
-@import url(../blocks/popup-edit/__form-input/popup-edit__form-input.css);
-@import url(../blocks/popup-edit/__form-submit/popup-edit__form-submit.css);
-@import url(../blocks/popup-edit/__input-container/popup-edit__input-container.css);
-@import url(../blocks/popup-edit/__title/popup-edit__title.css);
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__body/popup__body.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
+@import url(../blocks/popup/__content/popup__content.css);
+@import url(../blocks/popup/__form-input/popup__form-input.css);
+@import url(../blocks/popup/__form-submit/popup__form-submit.css);
+
+@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__opened/popup__opened.css);
 
 @import url(../blocks/elements/elements.css);
 

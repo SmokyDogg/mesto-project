@@ -4,11 +4,8 @@
   border: none;
   min-width: 22px;
   min-height: 19px;
+  cursor: pointer;
 }
 .element__like:hover {
   opacity: 0.5;
-}
-.element__like:active {
-  background-image: url(../../../images/active-like.svg);
-  opacity: 1;
 }
