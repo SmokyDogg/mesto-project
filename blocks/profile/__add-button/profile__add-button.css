@@ -13,5 +13,6 @@
     margin: 0 auto;
     min-width: 282px;
     background-size: 16px 16px;
+    border: #fff 2px solid;
   }
 }
