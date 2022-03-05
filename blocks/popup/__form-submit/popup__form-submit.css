@@ -5,6 +5,8 @@
   background-color: #000000;
   color: #fff;
   border: 0;
+  font-size: 18px;
+  line-height: 1.22;
   border-radius: 2px;
   transition: all ease 0.5s;
 }
@@ -15,5 +17,7 @@
   .popup__form-submit {
     min-width: 238px;
     margin-top: 45px;
+    font-size: 14px;
+    line-height: 1.21;
   }
 }
