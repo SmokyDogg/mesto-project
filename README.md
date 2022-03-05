@@ -18,5 +18,5 @@
 
 * [Фото сайта](./images/127.0.0.1_5500_.png)
 ___
-* [Ссылка на сайт](https://smokydogg.github.io/mesto-project/index.html)
+* [Ссылка на сайт](https://smokydogg.github.io/mesto-project/)
 ____
