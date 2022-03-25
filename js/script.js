@@ -43,10 +43,6 @@ const initialCards = [
     name: "Красная Поляна",
     link: "https://cf.youtravel.me/tr:w-800/upload/tours/965/965522135488b52c1e977e417ff0b587.jpg",
   },
-  {
-    name: "Пермь",
-    link: "https://100-faktov.ru/wp-content/uploads/2016/10/971976c62b8f592a5240.jpeg",
-  }
 ];
 const elementTemplate = document.querySelector('.elements').content;
 const elementsContainer = document.querySelector('.diss');
