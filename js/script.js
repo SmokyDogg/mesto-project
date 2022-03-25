@@ -45,7 +45,7 @@ const initialCards = [
   },
   {
     name: "Пермь",
-    link: "http://zhigalovphoto.ru/wp-content/uploads/08d11a828b519a63ede286e060e8e42a.jpg",
+    link: "https://100-faktov.ru/wp-content/uploads/2016/10/971976c62b8f592a5240.jpeg",
   }
 ];
 const elementTemplate = document.querySelector('.elements').content;
