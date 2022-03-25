@@ -1,22 +1,17 @@
 # Проект: Место
 
-### Обзор
-
-***В данном проекте реализован разнообразный функционал:***
+## О сайте
+Интерактивный сайт с функцией добавления и удаления своих карточек, а также смены имени и описания профиля.
+___
+## Что используется в проекте:
 * **Grid-layout**
 * **Flex-box**
 * **Всплывающее окно**
 * **Позиционирование**
 * **Адаптивная вёрстка**
-
-
-**Figma**
-
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-
-**Картинки**
-
-* [Фото сайта](./images/127.0.0.1_5500_.png)
+* **Javascript**
 ___
-* [Ссылка на сайт](https://smokydogg.github.io/mesto-project/)
+####[Ссылка на Figma](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1)
+___
+####[Ссылка на сайт](https://smokydogg.github.io/mesto-project/)
 ____

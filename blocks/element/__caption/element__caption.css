@@ -1,7 +1,7 @@
 .element__caption {
   margin: 0;
   display: flex;
-  min-height: 79px;
+  height: 79px;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;

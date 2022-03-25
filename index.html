@@ -19,74 +19,59 @@
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <button type="button" class="profile__edit-button button"></button>
-        <p class="profile__about">
-        Исследователь океана
-        </p>
+        <p class="profile__about">Исследователь океана</p>
       </div>
       <button class="profile__add-button button" type="button"></button>
     </section>
 
-    <section class="elements">
-      <div class="element">
-        <img src="./images/gatchina.jpg" alt="Гатчина" class="element__image">
-        <div class="element__caption">
-          <h2 class="element__title">Гатчина</h2>
-          <button class="element__like" type="button"></button>
+    <div class="diss">
+      <template class="elements">
+        <div id="element" class="element">
+          <img src="" alt="" class="element__image">
+          <button class="element__delete-button"></button>
+          <div class="element__caption">
+            <h2 class="element__title"></h2>
+            <button id="like" class="element__like" type="button"></button>
+          </div>
         </div>
-      </div>
-      <div class="element">
-        <img src="./images/spb.jpg" alt="Санкт-Петербург" class="element__image">
-        <div class="element__caption">
-          <h2 class="element__title">Санкт-Петербург</h2>
-          <button class="element__like" type="button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/irkutsk.jpg" alt="Иркутск-Бабр" class="element__image">
-        <div class="element__caption">
-          <h2 class="element__title">Иркутск</h2>
-          <button class="element__like" type="button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/elbrus.png" alt="Гора Эльбрус" class="element__image">
-        <div class="element__caption">
-          <h2 class="element__title">Эльбрус</h2>
-          <button class="element__like" type="button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/dombai.png" alt="Горы Домбай" class="element__image">
-        <div class="element__caption">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__like" type="button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/karachaevsk.png" alt="Пейзаж Карачаево-Черкесии" class="element__image">
-        <div class="element__caption">
-          <h2 class="element__title">Карачаево-Черкесия</h2>
-          <button class="element__like" type="button"></button>
-        </div>
-      </div>
-    </section>
+      </template>
+    </div>
   </main>
 
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
-  
-  <div id="popup" class="popup">
+  <div id="popup-add" class="popup popup_edit">
+    <div class="popup__content">
+      <button type="button" class="popup__close-button button"></button>
+    <h2 class="popup__title">Новое место</h2>
+    <form class="popup__form">
+      <input class="popup__form-input" type="text" name="card" id="card" required placeholder="Название">
+      <input class="popup__form-input" type="url" name="link" id="link" minlength="2" required placeholder="Ссылка на картинку">
+      <button class="popup-add__button button" type="submit" value="Создать">Создать</button>
+    </form>
+    </div>
+  </div>
+  <div id="popup-edit" class="popup popup_add">
     <div class="popup__content">
       <button type="button" class="popup__close-button button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="profile-info">
-        <input class="popup__form-input" type="text" value="Жак-Ив Кусто" name="name" id="name" minlength="2" required>
-        <input class="popup__form-input" type="text" value="Исследователь океана" name="info" id="info" minlength="2" required>
-        <button class="popup__form-submit button" type="submit">Сохранить</button>
+        <input class="popup__form-input" type="text" name="name" id="name" minlength="2" required placeholder="Имя">
+        <input class="popup__form-input" type="text" name="about" id="about" minlength="2" required placeholder="О себе">
+        <button class="popup-edit__button button" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
+  
+  <div id="popup-image" class="popup popup_image">
+    <div class="popup-image__content">
+      <img src="#" alt="#" class="popup-image__image">
+      <button class="popup__close-button button"></button>
+      <p class="popup-image__title"></p>
+    </div>
+  </div>
 
+  <script src="./js/script.js"></script>
 </body>
 </html>
