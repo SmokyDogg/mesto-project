@@ -45,7 +45,7 @@
     <div class="popup__content">
       <button type="button" class="popup__close-button button"></button>
     <h2 class="popup__title">Новое место</h2>
-    <form class="popup__form">
+    <form class="popup__form" action="#">
       <input class="popup__form-input" type="text" name="card" id="card" required placeholder="Название">
       <input class="popup__form-input" type="url" name="link" id="link" minlength="2" required placeholder="Ссылка на картинку">
       <button class="popup-add__button button" type="submit" value="Создать">Создать</button>
@@ -56,7 +56,7 @@
     <div class="popup__content">
       <button type="button" class="popup__close-button button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="profile-info">
+      <form class="popup__form" name="profile-info" action="#">
         <input class="popup__form-input" type="text" name="name" id="name" minlength="2" required placeholder="Имя">
         <input class="popup__form-input" type="text" name="about" id="about" minlength="2" required placeholder="О себе">
         <button class="popup-edit__button button" type="submit">Сохранить</button>
@@ -71,7 +71,7 @@
       <p class="popup-image__title"></p>
     </div>
   </div>
-
+  <script src="./js/cards.js"></script>
   <script src="./js/script.js"></script>
 </body>
 </html>
