@@ -25,13 +25,13 @@ function openPopup(popup) {
   popup.classList.add("popup_opened");
 };
 
-function textProfileInput(){
+function saveProfileInput(){
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
 };
 openEditButton.addEventListener("click", () => {
   openPopup(popupEdit);
-  textProfileInput();
+  saveProfileInput();
 });
 openAddButton.addEventListener("click", () => {
   openPopup(popupAdd);
