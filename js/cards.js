@@ -43,4 +43,8 @@ const initialCards = [
     name: "Красная Поляна",
     link: "https://cf.youtravel.me/tr:w-800/upload/tours/965/965522135488b52c1e977e417ff0b587.jpg",
   },
+  {
+    name: "Зеленоградск",
+    link: "https://timetraveling.ru/images/kaliningrad/zelenogradsk/zelenogradsk.jpg",
+  }
 ];
