@@ -8,7 +8,14 @@
   border: none;
   transition: all 0.3s ease;
   cursor: pointer;
+  display: none;
+  opacity: 1;
 }
 .element__delete-button:hover{
   opacity: 0.6;
+  display: block;
+}
+
+.element__image:hover ~ .element__delete-button {
+  display: block;
 }
