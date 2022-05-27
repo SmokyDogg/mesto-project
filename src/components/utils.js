@@ -1,3 +1,4 @@
+import { popupEdit, popupAdd} from './modal.js';
 const elementTemplate = document.querySelector(".elements").content;
 const elementsContainer = document.querySelector(".diss");
 const closeButton = document.querySelectorAll(".popup__close-button");
@@ -32,3 +33,4 @@ export {
   cardInput,
   linkInput
 }
+
