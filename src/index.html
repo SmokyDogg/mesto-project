@@ -5,7 +5,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
-  <link rel="stylesheet" href="./pages/index.css">
 
 </head>
 <body class="body">
@@ -15,7 +14,7 @@
 
   <main>
     <section class="profile">
-      <img src="./images/JacCusto.png" alt="ЖакКусто" class="profile__photo">
+      <img src="<%=require('./images/JacCusto.png')%>" alt="ЖакКусто" class="profile__photo">
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <button type="button" class="profile__edit-button button"></button>
@@ -47,7 +46,7 @@
     <h2 class="popup__title">Новое место</h2>
     <fieldset class="popup__form-set">
       <form class="popup__form" novalidate>
-        <input class="popup__form-input" type="text" name="card" id="card-input" minlength="2" required placeholder="Название">
+        <input class="popup__form-input" type="text" name="card" id="card-input" minlength="2" maxlength="30" required placeholder="Название">
         <span class="popup__input-error card-input-error">Вы пропустили это поле.</span>
         <input class="popup__form-input" type="url" name="link" id="link-input" minlength="2" required placeholder="Ссылка на картинку">
         <span class="popup__input-error link-input-error">Введите адрес сайта.</span>
@@ -62,9 +61,9 @@
       <h2 class="popup__title">Редактировать профиль</h2>
       <fieldset class="popup__form-set">
         <form class="popup__form" name="profile-info" novalidate>
-          <input class="popup__form-input" type="text" name="name" id="name-input" minlength="2" required placeholder="Имя">
+          <input class="popup__form-input" type="text" name="name" id="name-input" minlength="2"maxlength="40" required placeholder="Имя">
           <span class="popup__input-error name-input-error">Вы пропустили это поле.</span>
-          <input class="popup__form-input" type="text" name="about" id="about-input" minlength="2" required placeholder="О себе">
+          <input class="popup__form-input" type="text" name="about" id="about-input" minlength="2" maxlength="200" required placeholder="О себе">
           <span class="popup__input-error about-input-error">Вы пропустили это поле.</span>
           <button class="popup-button popup-edit__button button" type="submit">Сохранить</button>
         </form>
@@ -79,7 +78,5 @@
       <p class="popup-image__title"></p>
     </div>
   </div>
-  <script src="./js/cards.js"></script>
-  <script src="./js/script.js"></script>
 </body>
 </html>

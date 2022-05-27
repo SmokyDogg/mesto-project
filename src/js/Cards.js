@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
   {
     name: "Гатчина",
     link: "https://cdn.fishki.net/upload/post/2018/10/02/2721849/e722087be1cbdcccaed97e053cefa334.jpg",
