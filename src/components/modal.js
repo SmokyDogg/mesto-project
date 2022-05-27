@@ -8,13 +8,13 @@ const popupImageTitle = popupImage.querySelector(".popup-image__title");
 //Открытие попапа
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-}
+};
 
 //Закрытие попапа
 function closePopup(popupName) {
   popupName.classList.remove("popup_opened");
   document.addEventListener("keydown", closeEscape);
-}
+};
 
 //Закрытие попапа Esc
 function closeEscape(evt) {
@@ -22,7 +22,7 @@ function closeEscape(evt) {
     const openedPopup = document.querySelector(".popup_opened");
     closePopup(openedPopup);
   }
-}
+};
 
 //Закрытие попапа крестиком и на свободном месте
 popup.forEach((item) => {
