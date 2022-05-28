@@ -1,5 +1,3 @@
-import { resetInput } from "./card";
-
 const popup = document.querySelectorAll(".popup");
 const popupAdd = document.querySelector("#popup-add");
 const popupEdit = document.querySelector("#popup-edit");
