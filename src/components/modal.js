@@ -1,3 +1,5 @@
+import { resetInput } from "./card";
+
 const popup = document.querySelectorAll(".popup");
 const popupAdd = document.querySelector("#popup-add");
 const popupEdit = document.querySelector("#popup-edit");
@@ -8,12 +10,13 @@ const popupImageTitle = popupImage.querySelector(".popup-image__title");
 //Открытие попапа
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closeEscape);
 };
 
 //Закрытие попапа
-function closePopup(popupName) {
+function closePopup(popupName, evt) {
   popupName.classList.remove("popup_opened");
-  document.addEventListener("keydown", closeEscape);
+  document.removeEventListener("keydown", closeEscape);
 };
 
 //Закрытие попапа Esc
