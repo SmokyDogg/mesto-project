@@ -44,30 +44,26 @@
     <div class="popup__content">
       <button type="button" class="popup__close-button button"></button>
     <h2 class="popup__title">Новое место</h2>
-    <fieldset class="popup__form-set">
-      <form class="popup__form" novalidate>
+      <form class="popup__form editform" novalidate>
         <input class="popup__form-input" type="text" name="card" id="card-input" minlength="2" maxlength="30" required placeholder="Название">
         <span class="popup__input-error card-input-error">Вы пропустили это поле.</span>
         <input class="popup__form-input" type="url" name="link" id="link-input" minlength="2" required placeholder="Ссылка на картинку">
         <span class="popup__input-error link-input-error">Введите адрес сайта.</span>
-        <button class="popup-button popup-add__button button" type="submit" value="Создать">Создать</button>
+        <button class="popup__button popup-add__button button" type="submit" value="Создать">Создать</button>
       </form>
-    </fieldset>
     </div>
   </div>
   <div id="popup-edit" class="popup popup_edit">
     <div class="popup__content">
       <button type="button" class="popup__close-button button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <fieldset class="popup__form-set">
-        <form class="popup__form" name="profile-info" novalidate>
+        <form class="popup__form editform" name="profile-info" novalidate>
           <input class="popup__form-input" type="text" name="name" id="name-input" minlength="2"maxlength="40" required placeholder="Имя">
           <span class="popup__input-error name-input-error">Вы пропустили это поле.</span>
           <input class="popup__form-input" type="text" name="about" id="about-input" minlength="2" maxlength="200" required placeholder="О себе">
           <span class="popup__input-error about-input-error">Вы пропустили это поле.</span>
-          <button class="popup-button popup-edit__button button" type="submit">Сохранить</button>
+          <button class="popup__button popup-edit__button button" type="submit">Сохранить</button>
         </form>
-      </fieldset>
     </div>
   </div>
   

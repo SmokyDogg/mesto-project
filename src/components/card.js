@@ -15,7 +15,7 @@ import {
   nameInput,
   aboutInput,
 } from './utils.js';
-import {initialCards} from '../js/Cards.js';
+import {initialCards} from './Cards.js';
 
 function saveProfileInput() {
   nameInput.value = profileName.textContent;
@@ -33,6 +33,13 @@ function openPopupImage(image, title) {
   popupImageTitle.textContent = title;
   openPopup(popupImage);
 };
+function handleElementLike(evt) {
+  evt.target.classList.toggle("element__like_active");
+}
+function handleDeleteCard(evt) {
+  evt.target.closest(".element").remove();
+}
+
 function createCard(name, link) {
   const cardElement = elementTemplate.querySelector(".element").cloneNode(true);
   const cardImage = cardElement.querySelector(".element__image");
@@ -45,14 +52,10 @@ function createCard(name, link) {
   });
   cardElement
     .querySelector(".element__like")
-    .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("element__like_active");
-    });
+    .addEventListener("click", handleElementLike);
   cardElement
     .querySelector(".element__delete-button")
-    .addEventListener("click", function (evt) {
-      evt.target.closest(".element").remove();
-    });
+    .addEventListener("click", handleDeleteCard);
   return cardElement;
 };
 initialCards.forEach((item) =>
