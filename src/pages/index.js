@@ -1,9 +1,7 @@
 import './index.css';
+
 import {
-    saveProfileInput,
-    editProfileInfo,
     createCard,
-    resetInput
 } from '../components/card.js';
 
 import {
@@ -20,12 +18,20 @@ import {
   popupFormAdd,
   popupFormEdit,
   linkInput,
-  cardInput
+  cardInput,
+  popupInputs,
+  profileName,
+  profileAbout,
+  nameInput,
+  aboutInput,
 } from '../components/utils.js';
+
 import {
   enableValidation,
   toggleButtonState,
 } from '../components/validate.js';
+
+import { initialCards } from '../components/Cards.js'
 
 enableValidation({
   formSelector: '.popup__form',
@@ -35,6 +41,26 @@ enableValidation({
   inputErrorClass: 'popup__form-input_type_error',
   errorClass: 'popup__input-error_active'
 }); 
+
+function saveProfileInput() {
+  nameInput.value = profileName.textContent;
+  aboutInput.value = profileAbout.textContent;
+};
+
+function editProfileInfo(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileAbout.textContent = aboutInput.value;
+  closePopup(popupEdit);
+};
+
+initialCards.forEach((item) =>
+  elementsContainer.append(createCard(item.name, item.link))
+);
+
+function resetInput() {
+  popupInputs.forEach((item) => (item.value = ""));
+};
 
 openEditButton.addEventListener("click", () => {
   openPopup(popupEdit);
