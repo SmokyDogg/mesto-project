@@ -16,9 +16,9 @@
     <section class="profile">
       <img src="<%=require('./images/JacCusto.png')%>" alt="ЖакКусто" class="profile__photo">
       <div class="profile__info">
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <h1 class="profile__name">Виталька</h1>
         <button type="button" class="profile__edit-button button"></button>
-        <p class="profile__about">Исследователь океана</p>
+        <p class="profile__about"></p>
       </div>
       <button class="profile__add-button button" type="button"></button>
     </section>
@@ -30,7 +30,10 @@
           <button class="element__delete-button"></button>
           <div class="element__caption">
             <h2 class="element__title"></h2>
-            <button id="like" class="element__like" type="button"></button>
+            <div class="element__likes">
+              <button id="like" class="element__like" type="button"></button>
+              <p class="element__counter">0</p>
+            </div>
           </div>
         </div>
       </template>
@@ -44,7 +47,7 @@
     <div class="popup__content">
       <button type="button" class="popup__close-button button"></button>
     <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form editform" novalidate>
+      <form class="popup__form editform" name="add" novalidate>
         <input class="popup__form-input" type="text" name="card" id="card-input" minlength="2" maxlength="30" required placeholder="Название">
         <span class="popup__input-error card-input-error">Вы пропустили это поле.</span>
         <input class="popup__form-input" type="url" name="link" id="link-input" minlength="2" required placeholder="Ссылка на картинку">
@@ -57,8 +60,8 @@
     <div class="popup__content">
       <button type="button" class="popup__close-button button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="profile-info" novalidate>
-          <input class="popup__form-input" type="text" name="name" id="name-input" minlength="2"maxlength="40" required placeholder="Имя">
+        <form class="popup__form" name="edit" novalidate>
+          <input class="popup__form-input" type="text" name="name" id="name-input" minlength="2" maxlength="40" required placeholder="Имя">
           <span class="popup__input-error name-input-error">Вы пропустили это поле.</span>
           <input class="popup__form-input" type="text" name="about" id="about-input" minlength="2" maxlength="200" required placeholder="О себе">
           <span class="popup__input-error about-input-error">Вы пропустили это поле.</span>
@@ -66,7 +69,19 @@
         </form>
     </div>
   </div>
-  
+
+  <div id="popup-avatar" class="popup popup__avatar">
+    <div class="popup__content">
+      <button type="button" class="popup__close-button button"></button>
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__form" novalidate>
+        <input class="popup__form-input" type="url" name="ava" id="ava-input" minlength="2" required placeholder="Ссылка на аватар">
+        <span class="popup__input-error ava-input-error">Введите адрес сайта.</span>
+        <button class="popup__button popup-avatar__button button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
   <div id="popup-image" class="popup popup_image">
     <div class="popup-image__content">
       <img src="#" alt="#" class="popup-image__image">
@@ -74,5 +89,17 @@
       <p class="popup-image__title"></p>
     </div>
   </div>
+
+  <div id="popup-confirm" class="popup popup__confirm">
+    <div class="popup__content">
+      <button class="popup__close-button button"></button>
+      <h2 class="popup__title popup__title_confirm">Вы уверены?</h2>
+      <form class="popup__form" novalidate>
+        <button class="popup__button popup-confirm__button button">Да</button>
+      </form>
+    </div>
+  </div>
+
+  
 </body>
 </html>
