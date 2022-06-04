@@ -31,7 +31,8 @@ const addCard = (nameCard, linkCard) => {
       name: nameCard,
       link: linkCard,
     }),
-  }).then(checkResponse);
+  })
+  .then(checkResponse);
 };
 
 const editProfile = (name, about) => {

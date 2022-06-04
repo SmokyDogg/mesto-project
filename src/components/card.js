@@ -105,13 +105,13 @@ function resetInput() {
 
 function addNewCard(evt) {
   evt.preventDefault();
-    addCard(popupFormAdd.elements.card.value, popupFormAdd.elements.link.value)
+    addCard(popupFormAdd.elements.img.value, popupFormAdd.elements.link.value)
       .then((card) => {
-        elementsContainer.prepend(createCard(popupFormAdd.elements.card.value, popupFormAdd.elements.link.value, card._id, card.owner, card.likes));
+        elementsContainer.prepend(createCard(popupFormAdd.elements.img.value, popupFormAdd.elements.link.value, card._id, card.owner, card.likes));
         closePopup(popupAdd);
         popupFormAdd.reset();
-        popupFormAdd.elements.submit.classList.add('button_disabled');
-        popupFormAdd.elements.submit.disabled = true
+        popupAdd.querySelector('.popup__button').classList.add('button_disabled');
+        popupAdd.querySelector('.popup__button').disabled = true
       })
       .catch((err) => {
         console.log(err);
