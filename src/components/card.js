@@ -11,7 +11,8 @@ import {
 import {
   elementTemplate,
   elementsContainer,
-  popupFormAdd
+  popupFormAdd,
+  submitAddButton
 } from '../components/utils.js';
 import { addCard, removeCard, addLikeCard, removeLikeCard } from '../components/api.js'
 
@@ -42,6 +43,8 @@ function createCard(cardImage, cardName, cardId, cardOwner, cardLikes) {
   };
 
   if(cardOwner === profileId) {
+    elementDeleteButton(cardElement);
+
     cardElement.querySelector(".element__delete-button").addEventListener('click', (evt) => {
       cardElementDelete = evt.target.closest('.element');
       cardElementId = cardId;
@@ -59,6 +62,14 @@ function createCard(cardImage, cardName, cardId, cardOwner, cardLikes) {
   })
   return cardElement;
 };
+
+function elementDeleteButton(cardElement) {
+  const trashButton = document.createElement('button');
+  trashButton.classList.add('element__delete-button');
+  trashButton.setAttribute('type', 'button');
+  cardElement.prepend(trashButton);
+
+}
 
 function confirmRemove(card) {
   removeCard(cardElementId)
@@ -99,23 +110,24 @@ function renderInitialCards(initialCards) {
       elementsContainer.append(createCard(card.link, card.name, card._id, card.owner._id, card.likes))
     })
 }
-function resetInput() {
-  popupInputs.forEach((item) => (item.value = ""));
-};
 
 function addNewCard(evt) {
   evt.preventDefault();
+  submitAddButton.textContent = 'Сохранить...'
     addCard(popupFormAdd.elements.img.value, popupFormAdd.elements.link.value)
       .then((card) => {
         elementsContainer.prepend(createCard(popupFormAdd.elements.img.value, popupFormAdd.elements.link.value, card._id, card.owner, card.likes));
         closePopup(popupAdd);
         popupFormAdd.reset();
-        popupAdd.querySelector('.popup__button').classList.add('button_disabled');
-        popupAdd.querySelector('.popup__button').disabled = true
+        submitAddButton.classList.add('button_disabled');
+        submitAddButton.disabled = true
       })
       .catch((err) => {
         console.log(err);
       })
+      .finally(() => {
+        submitAddButton.textContent = 'Создать'
+      })
 }
 
-export { addNewCard, renderInitialCards, confirmRemove, resetInput}
+export { addNewCard, renderInitialCards, confirmRemove }

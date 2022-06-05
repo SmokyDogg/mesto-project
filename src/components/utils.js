@@ -6,6 +6,7 @@ const closeButton = document.querySelectorAll(".popup__close-button");
 const popupInputs = document.querySelectorAll(".popup__form-input");
 const submitAddButton = document.querySelector(".popup-add__button");
 const submitEditButton = document.querySelector(".popup-edit__button");
+const submitAvatarButton = document.querySelector('.popup-avatar__button');
 const openAddButton = document.querySelector(".profile__add-button");
 const openEditButton = document.querySelector(".profile__edit-button");
 const popupFormEdit = popupEdit.querySelector(".popup__form");
@@ -35,7 +36,9 @@ export {
   elementsContainer,
   closeButton,
   popupInputs,
-  submitAddButton,submitEditButton,
+  submitAddButton,
+  submitEditButton,
+  submitAvatarButton,
   openAddButton,
   openEditButton,
   popupFormEdit,

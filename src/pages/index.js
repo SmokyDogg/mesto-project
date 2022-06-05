@@ -32,7 +32,8 @@ import {
   profileName,
   profileAbout,
   formEdit,
-  popupConfirmButton
+  popupConfirmButton,
+  submitEditButton
 } from '../components/utils.js';
 
 import {
@@ -65,6 +66,7 @@ Promise.all([getProfileInfo(), getCards()])
 
 function editProfileSubmit(event) {
   event.preventDefault();
+  submitEditButton.textContent = 'Сохранение...'
   editProfile(popupFormEdit.elements.name.value, popupFormEdit.elements.about.value)
     .then(() => {
       profileName.textContent = popupFormEdit.elements.name.value;
@@ -75,10 +77,14 @@ function editProfileSubmit(event) {
     .catch((err) => {
       console.log(err);
     })
+    .finally(() => {
+      submitEditButton.textContent = 'Сохранить'
+    })
 }
 
 function editAvatarSubmit(event) {
   event.preventDefault();
+  submitAvatarButton.textContent = 'Сохранение..'
   updateAvatar(popupFormAvatar.elements.ava.value)
     .then(() => {
       profilePhoto.src = popupFormAvatar.elements.ava.value;
@@ -87,6 +93,9 @@ function editAvatarSubmit(event) {
     })
     .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+      submitAvatarButton.textContent = 'Сохранить'
     })
 }
 
