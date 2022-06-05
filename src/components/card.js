@@ -116,7 +116,7 @@ function addNewCard(evt) {
   submitAddButton.textContent = 'Сохранение...'
     addCard(popupFormAdd.elements.img.value, popupFormAdd.elements.link.value)
       .then((card) => {
-        elementsContainer.prepend(createCard(popupFormAdd.elements.link.value, popupFormAdd.elements.img.value, card._id, card.owner, card.likes));
+        elementsContainer.prepend(createCard(popupFormAdd.elements.link.value, popupFormAdd.elements.img.value, card._id, card.owner._id, card.likes));
         closePopup(popupAdd);
         popupFormAdd.reset();
         submitAddButton.classList.add('button_disabled');
@@ -130,4 +130,4 @@ function addNewCard(evt) {
       })
 }
 
-export { addNewCard, renderInitialCards, confirmRemove }
+export { addNewCard, renderInitialCards, confirmRemove, elementDeleteButton }

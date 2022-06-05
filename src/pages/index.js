@@ -3,7 +3,8 @@ import './index.css';
 import {
   addNewCard,
   renderInitialCards,
-  confirmRemove
+  confirmRemove,
+  elementDeleteButton
 } from '../components/card.js';
 
 import {
@@ -33,7 +34,9 @@ import {
   profileAbout,
   formEdit,
   popupConfirmButton,
-  submitEditButton
+  submitEditButton,
+  submitAvatarButton,
+  elementTemplate
 } from '../components/utils.js';
 
 import {
