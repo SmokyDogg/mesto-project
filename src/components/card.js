@@ -35,7 +35,7 @@ function createCard(cardImage, cardName, cardId, cardOwner, cardLikes) {
     likeCard(cardElement, cardLikeCount, cardId);
     cardLikes.forEach((card) => {
       if (card._id === profileId) {
-        cardLike.classList.add('.element__like_active');
+        cardLike.classList.add('element__like_active');
       }
     })
   } else {
@@ -68,7 +68,7 @@ function elementDeleteButton(cardElement) {
   trashButton.classList.add('element__delete-button');
   trashButton.setAttribute('type', 'button');
   cardElement.prepend(trashButton);
-
+  return elementDeleteButton;
 }
 
 function confirmRemove(card) {
@@ -113,10 +113,10 @@ function renderInitialCards(initialCards) {
 
 function addNewCard(evt) {
   evt.preventDefault();
-  submitAddButton.textContent = 'Сохранить...'
+  submitAddButton.textContent = 'Сохранение...'
     addCard(popupFormAdd.elements.img.value, popupFormAdd.elements.link.value)
       .then((card) => {
-        elementsContainer.prepend(createCard(popupFormAdd.elements.img.value, popupFormAdd.elements.link.value, card._id, card.owner, card.likes));
+        elementsContainer.prepend(createCard(popupFormAdd.elements.link.value, popupFormAdd.elements.img.value, card._id, card.owner, card.likes));
         closePopup(popupAdd);
         popupFormAdd.reset();
         submitAddButton.classList.add('button_disabled');
