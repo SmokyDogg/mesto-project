@@ -40,19 +40,28 @@ import {
 } from '../components/utils.js';
 
 import {
-  enableValidation,
+  FormValidator,
 } from '../components/validate.js';
 
 export let profileId = "";
 
-enableValidation({
+const settings = {
   formSelector: '.popup__form',
   inputSelector: '.popup__form-input',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'button_disabled',
   inputErrorClass: 'popup__form-input_type_error',
   errorClass: 'popup__input-error_active'
-});
+}
+
+const editValidate = new FormValidator(settings, popupFormEdit);
+editValidate.enableValidation();
+
+const addValidate = new FormValidator(settings, popupFormAdd);
+addValidate.enableValidation();
+
+const avatarValidate = new FormValidator(settings, popupFormAvatar);
+avatarValidate.enableValidation();
 
 Promise.all([getProfileInfo(), getCards()])
   .then(([profile, card]) => {
