@@ -7,12 +7,7 @@ import {
   elementDeleteButton
 } from '../components/card.js';
 
-import {
-  getProfileInfo,
-  getCards,
-  editProfile,
-  updateAvatar
-} from '../components/api.js'
+import Api from '../components/Api.js'
 
 import {
   openPopup,
@@ -53,6 +48,14 @@ enableValidation({
   inputErrorClass: 'popup__form-input_type_error',
   errorClass: 'popup__input-error_active'
 });
+
+const api = new Api({
+  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-10',
+  headers: {
+    authorization: '007c254b-9caf-4bca-b88e-e37c41d9deeb',
+    "Content-Type": "application/json"
+  },
+})
 
 Promise.all([getProfileInfo(), getCards()])
   .then(([profile, card]) => {
