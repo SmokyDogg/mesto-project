@@ -1,23 +1,11 @@
 import './index.css';
 
-import {
-  addNewCard,
-  renderInitialCards,
-  confirmRemove,
-  elementDeleteButton
-} from '../components/card.js';
+import { settings } from '../utils/constants.js';
 
-import Api from '../components/Api.js'
+import { api } from '../components/Api.js';
+import Popup from '../components/Popup.js';
+import Card from '../components/Card.js';
 
-import {
-  openPopup,
-  closePopup,
-  popupAdd,
-  popupEdit,
-  popupAvatar,
-  profilePhoto,
-  popupConfirm,
-} from '../components/modal.js';
 
 import {
   openAddButton,
@@ -32,32 +20,19 @@ import {
   submitEditButton,
   submitAvatarButton,
   elementTemplate
-} from '../components/utils.js';
+} from '../utils/constants.js';
 
-import {
-  enableValidation,
-} from '../components/validate.js';
+import FormValidator from '../components/Validate.js';
+
+import Modal from '../components/Popup.js';
 
 export let profileId = "";
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__form-input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'button_disabled',
-  inputErrorClass: 'popup__form-input_type_error',
-  errorClass: 'popup__input-error_active'
-});
 
-const api = new Api({
-  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-10',
-  headers: {
-    authorization: '007c254b-9caf-4bca-b88e-e37c41d9deeb',
-    "Content-Type": "application/json"
-  },
-})
 
-Promise.all([getProfileInfo(), getCards()])
+
+
+Promise.all([api.getProfileInfo(), api.getCards()])
   .then(([profile, card]) => {
     profileId = profile._id;
     profileName.textContent = profile.name;
@@ -91,7 +66,7 @@ function editProfileSubmit(event) {
 function editAvatarSubmit(event) {
   event.preventDefault();
   submitAvatarButton.textContent = 'Сохранение..'
-  updateAvatar(popupFormAvatar.elements.ava.value)
+  api.updateAvatar(popupFormAvatar.elements.ava.value)
     .then(() => {
       profilePhoto.src = popupFormAvatar.elements.ava.value;
       closePopup(popupAvatar);

@@ -1,12 +1,4 @@
-const popup = document.querySelectorAll(".popup");
-const popupAdd = document.querySelector("#popup-add");
-const popupEdit = document.querySelector("#popup-edit");
-const popupImage = document.querySelector("#popup-image");
-const popupConfirm = document.querySelector('#popup-confirm');
-const popupAvatar = document.querySelector('#popup-avatar');
-const popupImageImage = popupImage.querySelector(".popup-image__image");
-const popupImageTitle = popupImage.querySelector(".popup-image__title");
-const profilePhoto = document.querySelector('.profile__photo');
+
 
 //Открытие попапа
 function openPopup(popup) {
@@ -38,17 +30,4 @@ popup.forEach((item) => {
       closePopup(item)
     }
   });
-});
-
-export {
-  openPopup,
-  closePopup,
-  popupAdd,
-  popupEdit,
-  popupImage,
-  popupConfirm,
-  popupAvatar,
-  popupImageImage,
-  popupImageTitle,
-  profilePhoto
-};
+})

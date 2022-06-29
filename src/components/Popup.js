@@ -1,4 +1,4 @@
-export default class Popup{
+export default class Modal{
   constructor(popupElement){
     this._popupElement = popupElement;
     this._handleCloseEsc = this._handleCloseEsc.bind(this)
