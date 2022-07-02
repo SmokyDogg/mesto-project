@@ -2,7 +2,7 @@ import './index.css';
 
 import { settings } from '../utils/constants.js';
 
-import { api } from '../components/Api.js';
+import { api } from '../components/api.js';
 import Popup from '../components/Popup.js';
 import Card from '../components/Card.js';
 
@@ -26,13 +26,19 @@ import FormValidator from '../components/Validate.js';
 
 import Modal from '../components/Popup.js';
 
+import UserInfo from '../components/UserInfo.js'
+const a = {
+  userNameSelector: 'profile__name',
+  userDescriptionSelector: 'profile__about'
+}
+const userEx = new UserInfo(a);
+//userEx.setUserInfo('Назовитесь', 'Напишите о себе') Пример того, как работает setUserInfo
+
 export let profileId = "";
 
 
 
-
-
-Promise.all([api.getProfileInfo(), api.getCards()])
+Promise.all([userEx.getUserInfo(), api.getCards()]) //А тут getUserInfo
   .then(([profile, card]) => {
     profileId = profile._id;
     profileName.textContent = profile.name;
@@ -43,7 +49,7 @@ Promise.all([api.getProfileInfo(), api.getCards()])
   .catch((err) => {
     console.log(err);
   })
-
+  
 
 function editProfileSubmit(event) {
   event.preventDefault();
@@ -82,7 +88,7 @@ function editAvatarSubmit(event) {
 
 popupFormAvatar.addEventListener('submit', editAvatarSubmit);
 popupFormEdit.addEventListener('submit', editProfileSubmit);
-popupFormAdd.addEventListener('submit', addNewCard);
+//popupFormAdd.addEventListener('submit', addNewCard);
 
 openEditButton.addEventListener('click', function() {
   formEdit.elements.name.value = profileName.textContent;
@@ -92,7 +98,7 @@ openEditButton.addEventListener('click', function() {
 
 openAddButton.addEventListener('click', () => openPopup(popupAdd));
 
-profilePhoto.addEventListener('click', () => openPopup(popupAvatar));
+//profilePhoto.addEventListener('click', () => openPopup(popupAvatar));
 
 popupConfirmButton.addEventListener("click", () => {
   confirmRemove();

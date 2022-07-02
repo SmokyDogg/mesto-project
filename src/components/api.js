@@ -1,4 +1,4 @@
-class Api{
+export default class Api{
   constructor(settings){
     this._url = settings.baseUrl;
     this._headers = settings.headers;
@@ -7,7 +7,7 @@ class Api{
     if (res.ok){
       return(res.json())
     } else {
-      return Promise.reject(`Ошибка: ${res.status}`)
+     return Promise.reject(`Ошибка: ${res.status}`)
     }
   }
   getProfileInfo() {
