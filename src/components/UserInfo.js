@@ -1,22 +1,26 @@
-import {api} from './api.js'
+import { api } from "./Api.js";
 
-export default class UserInfo{
-  constructor(settingss) {
-    this._userNameSelector = settingss.userNameSelector;
-    this._userDescriptionSelector = settingss.userDescriptionSelector;
+export default class UserInfo {
+  constructor(name, about, avatar) {
+    this._name = document.querySelector(name);
+    this._about = document.querySelector(about);
+    this._avatar = document.querySelector(avatar);
   }
 
-  async getUserInfo() {
-    return await api.getProfileInfo()  
+  getUserInfo() {
+    return {
+      name: this._name.textContent,
+      about: this._about.textContent,
+    };
   }
 
-  async setUserInfo(name, about) {
-    return await api.editProfile(name, about)
-    .then(res => {
-      console.log(res)
-      document.querySelector(`.${this._userNameSelector}`).textContent = res.name;
-      document.querySelector(`.${this._userDescriptionSelector}`).textContent = res.about;
-    })
+  setUserInfo(infoName, infoAbout) {
+    this._name.textContent = infoName;
+    this._about.textContent = infoAbout;
+  }
+
+  setUserAvatar(formAvatar) {
+    this._avatar.src = formAvatar
   }
 }
 

@@ -1,4 +1,4 @@
-export default class Modal{
+export default class Popup{
   constructor(popupElement){
     this._popupElement = popupElement;
     this._handleCloseEsc = this._handleCloseEsc.bind(this)
@@ -6,11 +6,12 @@ export default class Modal{
 
   open() {
     this._popupElement.classList.add('popup_opened');
-   document.addEventListener('keydown', this._handleCloseEsc)
+    document.addEventListener('keydown', this._handleCloseEsc)
   }
+
   close() {
     this._popupElement.classList.remove('popup_opened');
-   document.removeEventListener('keydown', this._handleCloseEsc)
+    document.removeEventListener('keydown', this._handleCloseEsc)
   }
 
   _handleCloseEsc(evt) {

@@ -2,12 +2,13 @@ import './index.css';
 
 import { settings } from '../utils/constants.js';
 
-import { api } from '../components/api.js';
-import Popup from '../components/Popup.js';
-import Card from '../components/Card.js';
+import { api } from '../components/Api.js';
+import PopupWithForm from '../components/PopupWithForm';
+import PopupWithImage from '../components/PopupWithImage';
 
 
 import {
+  settings,
   openAddButton,
   openEditButton,
   popupFormAdd,
@@ -24,7 +25,16 @@ import {
 
 import FormValidator from '../components/Validate.js';
 
-import Modal from '../components/Popup.js';
+const editValidate = new FormValidator(settings, popupFormEdit);
+editValidate.enableValidation();
+
+const addValidate = new FormValidator(settings, popupFormAdd);
+addValidate.enableValidation();
+
+const avatarValidate = new FormValidator(settings, popupFormAvatar);
+avatarValidate.enableValidation();
+
+
 
 import UserInfo from '../components/UserInfo.js'
 const a = {
@@ -36,14 +46,17 @@ const userEx = new UserInfo(a);
 
 export let profileId = "";
 
+const popupWithForm = new PopupWithForm();
+const popupWithImage = new PopupWithImage();
+const user = new UserInfo ()
 
 
-Promise.all([userEx.getUserInfo(), api.getCards()]) //А тут getUserInfo
+
+Promise.all([api.getUserInfo(), api.getCards()]) //А тут getUserInfo
   .then(([profile, card]) => {
     profileId = profile._id;
-    profileName.textContent = profile.name;
-    profileAbout.textContent = profile.about;
-    profilePhoto.src = profile.avatar;
+    user.setUserInfo(profile.name, profile.about);
+    user.setUserAvatar(profile.avatar);
     renderInitialCards(card);
   })
   .catch((err) => {
@@ -93,10 +106,10 @@ popupFormEdit.addEventListener('submit', editProfileSubmit);
 openEditButton.addEventListener('click', function() {
   formEdit.elements.name.value = profileName.textContent;
   formEdit.elements.about.value = profileAbout.textContent;
-  openPopup(popupEdit)
+  open(popupEdit)
 })
 
-openAddButton.addEventListener('click', () => openPopup(popupAdd));
+openAddButton.addEventListener('click', () => popup.open(popupAdd));
 
 //profilePhoto.addEventListener('click', () => openPopup(popupAvatar));
 
