@@ -8,7 +8,6 @@ import PopupWithImage from '../components/PopupWithImage';
 
 
 import {
-  settings,
   openAddButton,
   openEditButton,
   popupFormAdd,
@@ -16,7 +15,6 @@ import {
   popupFormAvatar,
   profileName,
   profileAbout,
-  formEdit,
   popupConfirmButton,
   submitEditButton,
   submitAvatarButton,
@@ -43,16 +41,17 @@ const a = {
 }
 const userEx = new UserInfo(a);
 //userEx.setUserInfo('Назовитесь', 'Напишите о себе') Пример того, как работает setUserInfo
+//нихрена у меня не работало, я пытался сам что-то перебрать
+//но не пошло, не фартануло
 
 export let profileId = "";
 
 const popupWithForm = new PopupWithForm();
 const popupWithImage = new PopupWithImage();
-const user = new UserInfo ()
 
 
 
-Promise.all([api.getUserInfo(), api.getCards()]) //А тут getUserInfo
+Promise.all([userEx.getUserInfo(), api.getCards()]) //А тут getUserInfo
   .then(([profile, card]) => {
     profileId = profile._id;
     user.setUserInfo(profile.name, profile.about);
