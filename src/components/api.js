@@ -16,8 +16,8 @@ export default class Api{
       headers: this._headers
     }).then(this._checkResponse)
   }
-  getCards() {
-    return fetch(`${this._url}/cards`, {
+  async getCards() {
+     return await fetch(`${this._url}/cards`, {
       method: 'GET',
       headers: this._headers
     }).then(this._checkResponse)

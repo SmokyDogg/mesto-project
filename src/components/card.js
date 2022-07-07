@@ -1,14 +1,14 @@
 export default class Card{
-  constructor(name, link, likes, id, userId, ownerId, cardSelector, { handleClickCard, handleDeleteCard, handleLikeCard } ){
+  constructor({name, link, likes, id, userId, ownerId}, cardSelector/*, { handleClickCard, handleDeleteCard, handleLikeCard 0}*/ ){
     this._name = name;
     this._link = link;
     this._likes = likes;
     this._id = id;
     this._userId = userId;
     this._ownerId = ownerId
-    this._handleLikeCard = handleLikeCard;
-    this._handleClickCard = handleClickCard;
-    this._handleDeleteCard = handleDeleteCard;
+   // this._handleLikeCard = handleLikeCard;
+   // this._handleClickCard = handleClickCard;
+    //this._handleDeleteCard = handleDeleteCard;
     this._cardSelector = cardSelector;
   }
 
@@ -31,13 +31,13 @@ export default class Card{
     this._element = this._getTemplate();
 
     const cardImage = this._element.querySelector('.element__image');
-    cardImage.src = this._data.link;
-    cardImage.alt = this._data.name;
-    this._element.querySelector('.element__title').textContent = this._data.name;
-    this._element.querySelector('.element__counter').textContent = this._data.likes.length;
+    cardImage.src = this._link;
+    cardImage.alt = this._name;
+    this._element.querySelector('.element__title').textContent = this._name;
+    this._element.querySelector('.element__counter').textContent = this._likes.length;
 
-    this._setEventListeners();
-    this.setLike(this._like);
+ //   this._setEventListeners();
+   // this.setLike(this._like);
 
 
     if (this._id !== this._ownerId) {
