@@ -6,6 +6,7 @@ export const settings = {
   inputErrorClass: 'popup__form-input_type_error',
   errorClass: 'popup__input-error_active'
 };
+export const diss = document.querySelector('.diss')
 export const popup = document.querySelectorAll(".popup");
 export const popupAdd = document.querySelector("#popup-add");
 export const popupEdit = document.querySelector("#popup-edit");
@@ -26,8 +27,8 @@ export const popupFormAdd = popupAdd.querySelector(".popup__form");
 export const popupFormAvatar = popupAvatar.querySelector('.popup__form')
 export const profileName = document.querySelector(".profile__name");
 export const profileAbout = document.querySelector(".profile__about");
-export const nameInput = popupEdit.querySelector("#name-input");
-export const aboutInput = popupEdit.querySelector("#about-input");
-export const cardInput = popupAdd.querySelector("#card-input");
-export const linkInput = popupAdd.querySelector("#link-input");
+export const nameInput = document.querySelector("#name-input");
+export const aboutInput = document.querySelector("#about-input");
+export const cardInput = document.querySelector("#card-input");
+export const linkInput = document.querySelector("#link-input");
 export const popupConfirmButton = document.querySelector('.popup-confirm__button')

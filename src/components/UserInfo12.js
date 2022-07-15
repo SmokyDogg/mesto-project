@@ -1,5 +1,3 @@
-import { api } from "./Api.js";
-
 export default class UserInfo {
   constructor(name, about, avatar) {
     this._name = document.querySelector(name);

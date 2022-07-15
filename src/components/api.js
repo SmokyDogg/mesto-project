@@ -1,7 +1,7 @@
 export default class Api{
-  constructor(settings){
-    this._url = settings.baseUrl;
-    this._headers = settings.headers;
+  constructor({baseUrl, headers}){
+    this._url = baseUrl;
+    this._headers = headers;
   }
   _checkResponse(res) {
     if (res.ok){
@@ -16,13 +16,13 @@ export default class Api{
       headers: this._headers
     }).then(this._checkResponse)
   }
-  async getCards() {
-     return await fetch(`${this._url}/cards`, {
+  getCards() {
+     return fetch(`${this._url}/cards`, {
       method: 'GET',
       headers: this._headers
     }).then(this._checkResponse)
   }
-  addCard(){
+  addCard(name, link){
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: this._headers,

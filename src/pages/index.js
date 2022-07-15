@@ -1,14 +1,17 @@
 import './index.css';
 
-import { settings } from '../utils/constants.js';
+import { diss, settings } from '../utils/constants.js';
 
-import { api } from '../components/api.js';
-import PopupWithForm from '../components/PopupWithForm';
-import PopupWithImage from '../components/PopupWithImage';
+import { api } from '../components/Api.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js'
-import Card from '../components/card.js'
+import Card from '../components/Card.js';
+import UserInfo from '../components/UserInfo12.js';
+import FormValidator from '../components/Validate.js'
 
 import {
+  popupAdd,
   openAddButton,
   openEditButton,
   popupFormAdd,
@@ -19,150 +22,141 @@ import {
   popupConfirmButton,
   submitEditButton,
   submitAvatarButton,
-  elementTemplate
+  popupImage,
+  nameInput,
+  aboutInput
 } from '../utils/constants.js';
 
-
-
-import FormValidator from '../components/Validate.js';
-
+const user = new UserInfo(profileName, profileAbout, '.profile__photo');
+const imagePopup = new PopupWithImage(popupImage);
 const editValidate = new FormValidator(settings, popupFormEdit);
-editValidate.enableValidation();
-
 const addValidate = new FormValidator(settings, popupFormAdd);
-addValidate.enableValidation();
-
 const avatarValidate = new FormValidator(settings, popupFormAvatar);
-avatarValidate.enableValidation();
+let userId = '';
 
-
-
-import UserInfo from '../components/UserInfo.js'
-const a = {
-  userNameSelector: 'profile__name',
-  userDescriptionSelector: 'profile__about'
-}
-const userEx = new UserInfo(a);
-//userEx.setUserInfo('Назовитесь', 'Напишите о себе') Пример того, как работает setUserInfo
-//нихрена у меня не работало, я пытался сам что-то перебрать
-//но не пошло, не фартануло
-
-export let profileId = "";
-
-//const popupWithForm = new PopupWithForm();
-//const popupWithImage = new PopupWithImage();
-
-
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-    likes: [1, 2]
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-    likes: [1, 2]
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-    likes: [1, 2]
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-    likes: [1, 2]
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-    likes: [1, 2]
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-    likes: [1, 2]
-  }
-];
-
-
-const sectionEx = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const element = new Card(item, '.elements');
-    const cardEx = element.generateCard();
-    return cardEx;
-  } 
-},
-  '.diss'
-);
-
-sectionEx.renderAll();
-
-Promise.all([userEx.getUserInfo(), api.getCards()]) //А тут getUserInfo
-  .then(([profile, card]) => {
-    profileId = profile._id;
-    user.setUserInfo(profile.name, profile.about);
-    user.setUserAvatar(profile.avatar);
-    renderInitialCards(card);
+Promise.all([api.getCards(), api.getProfileInfo()])
+  .then(([cards, userData]) => {
+    userId = userData._id;
+    user.setUserInfo(userData.name, userData.about);
+    user.setUserAvatar(userData.avatar);
+    cardItems.renderAll(cards);
   })
-  .catch((err) => {
-    console.log(err);
-  })
+  .catch((err) => {console.log(`Ошибка: ${err}`)})
+
+  editValidate.enableValidation();
+  addValidate.enableValidation();
+  avatarValidate.enableValidation();
   
-
-function editProfileSubmit(event) {
-  event.preventDefault();
-  submitEditButton.textContent = 'Сохранение...'
-  editProfile(popupFormEdit.elements.name.value, popupFormEdit.elements.about.value)
-    .then(() => {
-      profileName.textContent = popupFormEdit.elements.name.value;
-      profileAbout.textContent = popupFormEdit.elements.about.value;
-      closePopup(popupEdit);
-      popupFormEdit.reset();
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      submitEditButton.textContent = 'Сохранить'
-    })
+function loadCard(item) {
+  cardItems.addItem(item);
 }
 
-function editAvatarSubmit(event) {
-  event.preventDefault();
-  submitAvatarButton.textContent = 'Сохранение..'
-  api.updateAvatar(popupFormAvatar.elements.ava.value)
-    .then(() => {   
-      profilePhoto.src = popupFormAvatar.elements.ava.value;
-      closePopup(popupAvatar);
-      popupFormAvatar.reset();
+function createCard(item) {
+  const card = new Card(item.name, item.link, item.likes, item._id, userId, item._ownerId, '.elements',
+  {handleClickCard: () => imagePopup.openImage(item.name, item.link),
+   handleDeleteCard: (id) =>  {
+    confirmDelete.open()
+    confirmDelete.switchCallBack({newCallBack: () => {
+      api.removeCard(id)
+      .then(res => {
+        card.deleteCardHandler();
+        confirmDelete.close()
+      })
+      .catch((err) => {console.log(`Ошибка: ${err}`)})
+    }})
+   },
+   handleLikeCard: (id) => {
+    if(card.isLiked) {
+      api.removeLikeCard(id)
+    .then(res => {
+      card.setLike(res.likes)
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((err) =>{console.log(`Ошибка: ${err}`)})
+    } else {
+      api.addLikeCard(id)
+    .then(res => {
+      card.setLike(res.likes)
     })
-    .finally(() => {
-      submitAvatarButton.textContent = 'Сохранить'
-    })
+    .catch((err) =>{console.log(`Ошибка: ${err}`)})
+    }
+   }
+  })
+  const cardElement = card.generateCard();
+  return cardElement;
 }
 
-popupFormAvatar.addEventListener('submit', editAvatarSubmit);
-popupFormEdit.addEventListener('submit', editProfileSubmit);
-//popupFormAdd.addEventListener('submit', addNewCard);
+function doCard (item) {
+  const cardElement = createCard(item);
+  loadCard(cardElement);
+}
 
-openEditButton.addEventListener('click', function() {
-  formEdit.elements.name.value = profileName.textContent;
-  formEdit.elements.about.value = profileAbout.textContent;
-  open(popupEdit)
+const cardItems = new Section({
+  renderer:(item) => {
+    doCard({name: item.name, link: item.link, likes: item.likes, _id: item._id, userId: userId, ownerId: item._ownerId._id})
+  }
+}, diss)
+
+const profile = new PopupWithForm(popupFormEdit, {callBack: (info) => {
+  profile.renderLoading(true)
+  api.editProfile(info.name, info.about)
+  .then(res => {
+    user.setUserInfo(res.name, res.about);
+    profile.close()
+  })
+  .catch((err) =>{console.log(`Ошибка: ${err}`)})
+  .finally(() => {profile.renderLoading(false)})
+}})
+
+
+openEditButton.addEventListener('click', () => {
+  profile.open();
+  const userData = user.getUserInfo();
+  nameInput.value = userData.name;
+  aboutInput.value = userData.about;
+  editValidate.removeError();
+  editValidate.disableSubmitButton()
 })
 
-openAddButton.addEventListener('click', () => popup.open(popupAdd));
+profile.setEventListeners()
 
-//profilePhoto.addEventListener('click', () => openPopup(popupAvatar));
+const addingCard = new PopupWithForm(popupAdd, {callBack: (item) => {
+    addingCard.renderLoading(true)
+    api.addCard(item.place, item.placelink)
+    .then(res => {
+      doCard({name: res.name, link: res.link, likes: res.likes, _id: res._id, userId: res._id, ownerId: res.owner._id});
+      addingCard.close()
+    })
+}})
 
-popupConfirmButton.addEventListener("click", () => {
-  confirmRemove();
-  closePopup(popupConfirm)
+openAddButton.addEventListener('click', () => {
+  addingCard.open();
+  addValidate.removeError();
+  addValidate.disableSubmitButton()
+});
+
+addingCard.setEventListeners()
+
+const confirmDelete = new PopupWithForm('.popup__confirm', {})
+
+confirmDelete.setEventListeners()
+
+const avatarUpdate = new PopupWithForm('.popup__avatar', {callBack: (info) => {
+  avatarUpdate.renderLoading(true);
+  api.updateAvatar(info.avatar)
+  .then(res=> {
+    user.setUserAvatar(res.avatar);
+    avatarUpdate.close()
+  })
+  .catch((err) => { console.log(`Ошибка: ${err}`)})
+  .finally(() =>{avatarUpdate.renderLoading(false)})
+}})
+
+submitAvatarButton.addEventListener('click', () => {
+  avatarUpdate.open();
+  avatarValidate.removeError();
+  avatarValidate.disableSubmitButton()
 })
+
+avatarUpdate.setEventListeners();
+
+imagePopup._setEventListeners()
