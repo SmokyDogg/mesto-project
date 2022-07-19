@@ -17,11 +17,10 @@ import {
   popupFormAdd,
   popupFormEdit,
   popupFormAvatar,
+  popupAvatar,
   profileName,
   profileAbout,
-  popupConfirmButton,
-  submitEditButton,
-  submitAvatarButton,
+  profilePhoto,
   popupImage,
   nameInput,
   aboutInput
@@ -117,7 +116,7 @@ openEditButton.addEventListener('click', () => {
   editValidate.disableSubmitButton()
 })
 
-profile.setEventListeners()
+//profile.setEventListeners()
 
 const addingCard = new PopupWithForm(popupAdd, {callBack: (item) => {
     addingCard.renderLoading(true)
@@ -136,11 +135,11 @@ openAddButton.addEventListener('click', () => {
 
 addingCard.setEventListeners()
 
-const confirmDelete = new PopupWithForm('.popup__confirm', {})
+//const confirmDelete = new PopupWithForm('.popup__confirm', {callBack: {}})
 
-confirmDelete.setEventListeners()
+//confirmDelete.setEventListeners()
 
-const avatarUpdate = new PopupWithForm('.popup__avatar', {callBack: (info) => {
+const avatarUpdate = new PopupWithForm(popupAvatar, {callBack: (info) => {
   avatarUpdate.renderLoading(true);
   api.updateAvatar(info.avatar)
   .then(res=> {
@@ -151,7 +150,7 @@ const avatarUpdate = new PopupWithForm('.popup__avatar', {callBack: (info) => {
   .finally(() =>{avatarUpdate.renderLoading(false)})
 }})
 
-submitAvatarButton.addEventListener('click', () => {
+profilePhoto.addEventListener('click', () => {
   avatarUpdate.open();
   avatarValidate.removeError();
   avatarValidate.disableSubmitButton()
@@ -159,4 +158,4 @@ submitAvatarButton.addEventListener('click', () => {
 
 avatarUpdate.setEventListeners();
 
-imagePopup._setEventListeners()
+//imagePopup._setEventListeners()
