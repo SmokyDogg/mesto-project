@@ -29,11 +29,7 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListeners('submit', (evt) => {
       evt.preventDefault();
       this._callBack(this._getInputValue())
-    })
-  }
-
-  close() {
-    super.close();
+    });
   }
 
   renderLoading(isLoading) {

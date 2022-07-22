@@ -6,7 +6,8 @@ export const settings = {
   inputErrorClass: 'popup__form-input_type_error',
   errorClass: 'popup__input-error_active'
 };
-export const diss = document.querySelector('.diss')
+export const diss = document.querySelector('.diss');
+export const elements = document.querySelector('.elements');
 export const popup = document.querySelectorAll(".popup");
 export const popupAdd = document.querySelector("#popup-add");
 export const popupEdit = document.querySelector("#popup-edit");

@@ -80,15 +80,14 @@ function createCard(item) {
     }
    }
   })
-  const cardElement = card.generateCard();
-  return cardElement;
+  const newCard = card.generateCard();
+  return newCard;
 }
 
 function doCard (item) {
-  const cardElement = createCard(item);
-  loadCard(cardElement);
+  const newCard = createCard(item);
+  loadCard(newCard)
 }
-
 const cardItems = new Section({
   renderer:(item) => {
     doCard({name: item.name, link: item.link, likes: item.likes, _id: item._id, userId: userId, ownerId: item._ownerId._id})
@@ -135,9 +134,9 @@ openAddButton.addEventListener('click', () => {
 
 addingCard.setEventListeners()
 
-//const confirmDelete = new PopupWithForm('.popup__confirm', {callBack: {}})
+const confirmDelete = new PopupWithForm('.popup__confirm', {});
 
-//confirmDelete.setEventListeners()
+confirmDelete.setEventListeners()
 
 const avatarUpdate = new PopupWithForm(popupAvatar, {callBack: (info) => {
   avatarUpdate.renderLoading(true);
@@ -158,4 +157,4 @@ profilePhoto.addEventListener('click', () => {
 
 avatarUpdate.setEventListeners();
 
-//imagePopup._setEventListeners()
+imagePopup.setEventListeners()
