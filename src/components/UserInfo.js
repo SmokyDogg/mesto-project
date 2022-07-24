@@ -1,26 +1,24 @@
-///import {api} from './api.js'
-///
-///export default class UserInfo{
-///  constructor(settingss) {
-///    this._userNameSelector = settingss.userNameSelector;
-///    this._userDescriptionSelector = settingss.userDescriptionSelector;
-///  }
-///
-///  async getUserInfo() {
-///    return await api.getProfileInfo()  
-///  }
-///
-///  async setUserInfo(name, about) {
-///    return await api.editProfile(name, about)
-///    .then(res => {
-///      console.log(res)
-///      document.querySelector(`.${this._userNameSelector}`).textContent = res.name;
-///      document.querySelector(`.${this._userDescriptionSelector}`).textContent = res.about;
-///    })
-///  }
-///
-///  setUserAvatar(formAvatar) {
-///    this._avatar.src = formAvatar
-///  }
-///}
+export default class UserInfo {
+  constructor(userNameElement, userAboutElement, userAvatarElement) {
+    this._name = userNameElement;
+    this._about = userAboutElement;
+    this._avatar = userAvatarElement;
+  }
+
+  getUserInfo() {
+    return {
+      name: this._name.textContent,
+      about: this._about.textContent
+    };
+  }
+
+  setUserInfo(data) {
+    this._name.textContent = data.name;
+    this._about.textContent = data.about;
+  }
+
+  setUserAvatar(formAvatar) {
+    this._avatar.src = formAvatar
+  }
+}
 

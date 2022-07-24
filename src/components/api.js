@@ -7,7 +7,7 @@ export default class Api{
     if (res.ok){
       return(res.json())
     } else {
-     return Promise.reject(`Ошибка: ${res.status}`)
+     return Promise.reject(res.status)
     }
   }
   getProfileInfo() {
@@ -38,7 +38,7 @@ export default class Api{
       headers: this._headers,
       body: JSON.stringify({
         name,
-        about,
+        about
       }),
     }).then(this._checkResponse)
   }

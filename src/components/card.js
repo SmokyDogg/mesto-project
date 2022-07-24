@@ -26,7 +26,7 @@ export default class Card {
   }
 
   isLiked() {
-    const userLikedCard = this._like.find((user) => user._id === this._userId);
+    const userLikedCard = this._like.find(user => user._id === this._userId);
     return userLikedCard;
   }
 
@@ -34,7 +34,7 @@ export default class Card {
     this._like = newLike;
     this._likeCount.textContent = this._like.length;
 
-    if (this.isLiked()) {
+    if (!this.isLiked()) {
       this._addLike();
     } else {
       this._removeLike();

@@ -26,7 +26,8 @@
     <div class="diss">
       <template class="elements">
         <div id="element" class="element">
-          <div class="element__image">
+          <div class="element__container">
+            <img src="" alt="" class="element__image">
             <button type="button" class="element__delete-button"></button>
           </div>
           <div class="element__caption">
@@ -44,19 +45,7 @@
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
-  <div id="popup-add" class="popup popup_add">
-    <div class="popup__content">
-      <button type="button" id="kek" class="popup__close-button button"></button>
-    <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form" name="add" novalidate>
-        <input class="popup__form-input" type="text" name="img" id="img-input" minlength="2" maxlength="30" required placeholder="Название">
-        <span class="popup__input-error img-input-error">Вы пропустили это поле.</span>
-        <input class="popup__form-input" type="url" name="link" id="link-input" minlength="2" required placeholder="Ссылка на картинку">
-        <span class="popup__input-error link-input-error">Введите адрес сайта.</span>
-        <button class="popup__button popup-add__button button" type="submit" value="Создать">Создать</button>
-      </form>
-    </div>
-  </div>
+
   <div id="popup-edit" class="popup popup_edit">
     <div class="popup__content">
       <button type="button" class="popup__close-button button"></button>
@@ -70,6 +59,21 @@
         </form>
     </div>
   </div>
+
+  <div id="popup-add" class="popup popup_add">
+    <div class="popup__content">
+      <button type="button" id="kek" class="popup__close-button button"></button>
+    <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="add" novalidate>
+        <input class="popup__form-input" type="text" name="img" id="img-input" minlength="2" maxlength="30" required placeholder="Название">
+        <span class="popup__input-error img-input-error">Вы пропустили это поле.</span>
+        <input class="popup__form-input" type="url" name="link" id="link-input" minlength="2" required placeholder="Ссылка на картинку">
+        <span class="popup__input-error link-input-error">Введите адрес сайта.</span>
+        <button class="popup__button popup-add__button button" type="submit" value="Создать">Создать</button>
+      </form>
+    </div>
+  </div>
+  
 
   <div id="popup-avatar" class="popup popup__avatar">
     <div class="popup__content">
