@@ -100,9 +100,9 @@ const cardItems = new Section({
   }
 }, diss);
 
-const addingCard = new PopupWithForm(popupAdd, {callBack: (data) => {
+const addingCard = new PopupWithForm(popupAdd, {callBack: (item) => {
     addingCard.renderLoading(true)
-    api.addCard(data.place, data.link)
+    api.addCard(item.name, item.link)
     .then(res => {
       doCard({name: res.name, link: res.link, likes: res.likes, id: res._id, userId: res._id, owner: res.owner._id});
       addingCard.close()
@@ -153,9 +153,9 @@ confirmDelete.setEventListeners()
 
 const avatarUpdate = new PopupWithForm(popupAvatar, {callBack: (info) => {
   avatarUpdate.renderLoading(true);
-  api.updateAvatar(info)
+  api.updateAvatar(info.avatar)
   .then(res=> {
-    user.setUserAvatar(res.ava);
+    user.setUserAvatar(res.avatar);
     avatarUpdate.close()
   })
   .catch((err) => { console.log(`Ошибка: ${err}`) })
