@@ -42,30 +42,30 @@ export default class Api{
       }),
     }).then(this._checkResponse)
   }
-  updateAvatar(link) {
+  updateAvatar(avatar) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        link
+        avatar
       }),
     }).then(this._checkResponse);
   }
   
-  removeCard(cardId) {
-    return fetch(`${this._url}/cards/${cardId}`, {
+  removeCard(id) {
+    return fetch(`${this._url}/cards/${id}`, {
       method: 'DELETE',
       headers: this._headers
     }).then(this._checkResponse);
   };
-  addLikeCard(cardId) {
-    return fetch(`${this._url}/cards/likes/${cardId}`, {
+  addLikeCard(id) {
+    return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this._headers
     }).then(this._checkResponse)
   };
-  removeLikeCard(cardId) {
-    return fetch(`${this._url}/cards/likes/${cardId}`, {
+  removeLikeCard(id) {
+    return fetch(`${this._url}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers
     }).then(this._checkResponse)

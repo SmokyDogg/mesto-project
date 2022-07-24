@@ -66,23 +66,22 @@ function createCard(item) {
         card.deleteCardHandler();
         confirmDelete.close()
       })
-      .catch((err) => {console.log(`${err}`)})
+      .catch((err) => {console.log(`Ошибка: ${err}`)})
     }})
    },
    handleLikeCard: (id) => {
-    console.log(id);
     if(card.isLiked) {
       api.removeLikeCard(id)
     .then(res => {
       card.setLike(res.likes)
     })
-    .catch((err) =>{console.log(`${err}`)})
+    .catch((err) =>{console.log(`Ошибка: ${err}`)})
     } else {
       api.addLikeCard(id)
     .then(res => {
       card.setLike(res.likes)
     })
-    .catch((err) =>{console.log(`${err}`)})
+    .catch((err) =>{console.log(`Ошибка: ${err}`)})
     }
    }
   })
@@ -156,7 +155,7 @@ const avatarUpdate = new PopupWithForm(popupAvatar, {callBack: (info) => {
   avatarUpdate.renderLoading(true);
   api.updateAvatar(info)
   .then(res=> {
-    user.setUserAvatar(res.avatar);
+    user.setUserAvatar(res.ava);
     avatarUpdate.close()
   })
   .catch((err) => { console.log(`Ошибка: ${err}`) })
