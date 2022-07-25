@@ -5,7 +5,7 @@ export default class Card {
   ) {
     this._name = name;
     this._link = link;
-    this._like = likes;
+    this._likes = likes;
     this._id = id;
     this._userId = userId;
     this._ownerId = ownerId;
@@ -26,12 +26,12 @@ export default class Card {
   }
 
   isLiked() {
-    return this._like.some((user) => user._id === this._userId);
+    return this._likes.find(user => user._id === this._userId);
   }
 
   setLike(newLike) {
-    this._like = newLike;
-    this._likeCount.textContent = this._like.length;
+    this._likes = newLike;
+    this._likeCount.textContent = this._likes.length;
 
     if (this.isLiked()) {
       this._addLike();
@@ -41,11 +41,12 @@ export default class Card {
   }
 
   _addLike() {
-    this._likeButton.classList.add("photo__like_active");
+    this._likeButton.classList.add("element__like_active");
   }
   _removeLike() {
-    this._likeButton.classList.remove("photo__like_active");
+    this._likeButton.classList.remove("element__like_active");
   }
+  
 
   generateCard() {
     this._element = this._getTemplate();
@@ -59,7 +60,7 @@ export default class Card {
     this._title.textContent = this._name;
 
     this._setEventListeners();
-    this.setLike(this._like);
+    this.setLike(this._likes);
 
     if (this._ownerId !== this._userId) {
       this._deleteButton.style.display = "none";

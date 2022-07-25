@@ -43,6 +43,7 @@ Promise.all([api.getCards(), api.getProfileInfo()])
     });
     profilePhoto.src = userData.avatar;
     user.setUserAvatar(userData.avatar);
+    cards.reverse();
     cardItems.renderAll(cards);
   })
   .catch((err) => {console.log(`${err}`)})
@@ -56,13 +57,13 @@ function loadCard(item) {
 }
 
 function createCard(item) {
-  const card = new Card(item.name, item.link, item.likes, item._id, userId, item.owner._id, '.elements',
+  const card = new Card(item.name, item.link, item.likes, item._id, userId, item.ownerId, '.elements',
   { handleClickCard: () => imagePopup.openImage(item.name, item.link),
     handleDeleteCard: (id) =>  {
     confirmDelete.open()
     confirmDelete.switchCallBack({newCallBack: () => {
       api.removeCard(id)
-      .then(() => {
+      .then(res => {
         card.deleteCardHandler();
         confirmDelete.close()
       })
@@ -70,7 +71,7 @@ function createCard(item) {
     }})
    },
    handleLikeCard: (id) => {
-    if(card.isLiked) {
+    if(card.isLiked()) {
       api.removeLikeCard(id)
     .then(res => {
       card.setLike(res.likes)
@@ -96,15 +97,15 @@ function doCard (item) {
 
 const cardItems = new Section({
   renderer:(item) => {
-    doCard({name: item.name, link: item.link, likes: item.likes, id: item._id, userId: userId, owner: item.owner._id})
+    doCard({name: item.name, link: item.link, likes: item.likes, _id: item._id, userId: userId, ownerId: item.owner._id})
   }
 }, diss);
 
 const addingCard = new PopupWithForm(popupAdd, {callBack: (item) => {
     addingCard.renderLoading(true)
-    api.addCard(item.name, item.link)
+    api.addCard(item.img, item.link)
     .then(res => {
-      doCard({name: res.name, link: res.link, likes: res.likes, id: res._id, userId: res._id, owner: res.owner._id});
+      doCard({name: res.name, link: res.link, likes: res.likes, _id: res._id, userId: res._id, ownerId: res.owner._id});
       addingCard.close()
     })
     .catch((err) =>{console.log(`Ошибка с созданием: ${err}`)})
@@ -153,7 +154,7 @@ confirmDelete.setEventListeners()
 
 const avatarUpdate = new PopupWithForm(popupAvatar, {callBack: (info) => {
   avatarUpdate.renderLoading(true);
-  api.updateAvatar(info.avatar)
+  api.updateAvatar(info.ava)
   .then(res=> {
     user.setUserAvatar(res.avatar);
     avatarUpdate.close()
