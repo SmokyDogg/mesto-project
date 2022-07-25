@@ -8,7 +8,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js'
 import Card from '../components/Card.js';
 import UserInfo from '../components/UserInfo.js';
-import FormValidator from '../components/Validate.js'
+import FormValidator from '../components/FormValidator.js'
 
 import {
   popupEdit,
@@ -41,7 +41,6 @@ Promise.all([api.getCards(), api.getProfileInfo()])
       name: userData.name,
       about: userData.about
     });
-    profilePhoto.src = userData.avatar;
     user.setUserAvatar(userData.avatar);
     cards.reverse();
     cardItems.renderAll(cards);
